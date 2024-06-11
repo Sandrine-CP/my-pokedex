@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import MyTitle from './MyTitle'
 import PokemonCard from './components/PokemonCard'
+import PropTypes from "prop-types"
 
 const pokemonlist = [
   {
