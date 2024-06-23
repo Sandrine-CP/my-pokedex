@@ -1,19 +1,15 @@
 import PokemonCard from "./PokemonCard"
 
-
-  
-function NavBar ({onPrevious, onNext, showPrevious, showNext}) {
+function NavBar ({pokemonList}) {
 
     return (
       <div>
-        { showPrevious && (
-          <button onClick={onPrevious}>Précédent</button>
-        )} 
-        { showNext && (
-        <button onClick={onNext}>Suivant</button>
-        )}
-       </div>
+      {pokemonList.map((pokemon) => (
+        <button key={pokemon.name}> {pokemon.name} 
+        </button>
+      ))}
+      </div>
     )
-}
+  }
 
 export default NavBar
