@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import MyTitle from './MyTitle'
 import PokemonCard from './components/PokemonCard'
 import PropTypes from "prop-types"
+import NavBar from './components/NavBar'
 
 const pokemonList = [
   {
@@ -31,29 +29,33 @@ const pokemonList = [
       name: "mew",
     },
   ];
+  
+  function App({pokemon}) {
+    
+    const [pokemonIndex, setPokemonIndex] = useState(0);
 
-function App({pokemon}) {
-  const [pokemonIndex, setPokemonIndex] = useState(0);
-  const handleClickPrevious = () => {
-    setPokemonIndex(pokemonIndex - 1)
-  }
-  const handleClickNext = () => {
-    setPokemonIndex(pokemonIndex + 1)
-  }
-  return (
-    <>
-      <div>
-        <PokemonCard pokemon={pokemonList[pokemonIndex]} />
-        {pokemonIndex >0 && (
-        <button onClick={handleClickPrevious}>Précédent</button>
-        )}
-        {pokemonIndex < pokemonList.length - 1 && (
-        <button onClick={handleClickNext}>Suivant</button>
-        )}
-        <p>Index du Pokemon : {pokemonIndex}</p>
-      </div>
-    </>
-  );
+    const handleClickPrevious = () => {
+      setPokemonIndex(pokemonIndex - 1)}
+
+    const handleClickNext = () => {
+      setPokemonIndex(pokemonIndex + 1)}
+
+    return (
+      <>
+        <div>
+          <NavBar 
+            onPrevious={ handleClickPrevious }
+            onNext={ handleClickNext }
+            showPrevious={ pokemonIndex > 0}
+            showNext={ pokemonIndex < pokemonList.length - 1}
+          />
+        </div>
+        <div>
+          <PokemonCard pokemon={pokemonList[pokemonIndex]} />
+          <p>Index du Pokemon : {pokemonIndex}</p>
+        </div>
+      </>
+    );
 }
 
 export default App
