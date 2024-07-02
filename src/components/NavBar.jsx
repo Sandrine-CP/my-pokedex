@@ -1,15 +1,24 @@
-import PokemonCard from "./PokemonCard"
+import PropTypes from "prop-types";
 
-function NavBar ({pokemonList}) {
-
-    return (
-      <div>
-      {pokemonList.map((pokemon) => (
-        <button key={pokemon.name}> {pokemon.name} 
+function NavBar({ pokemonList, setPokemonIndex }) {
+  return (
+    <div>
+      {pokemonList.map((pokemon, index) => (
+        <button key={pokemon.name} onClick={() => setPokemonIndex(index)}>
+          {pokemon.name}
         </button>
       ))}
-      </div>
-    )
-  }
+    </div>
+  );
+}
 
-export default NavBar
+NavBar.propTypes = {
+  pokemonList: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  setPokemonIndex: PropTypes.func.isRequired,
+};
+
+export default NavBar;
